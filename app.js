@@ -8,28 +8,34 @@ const articleRouter = require('./route/article_R');
 const db = require('./db/db_DB');
 
 const app = express();
+
+const HTTP_PORT = 3000;
+//const HTTP_IP = '192.168.1.100';
+const HTTP_IP = 'coolme.me';
+
 async function start()
 {
   await db.run();
-  app.listen(3000, '192.168.1.100');
-  console.log('The WebServer is listening on localhost:3000');
+  app.listen(HTTP_PORT, HTTP_IP);
+  console.log(`The HTTP1.1 WebServer is listening on: 
+  ${HTTP_IP}:${HTTP_PORT}`);
 }
 start();
 
-app.use((req, res, next) =>
-{
-  console.log('request was made:');
-  console.log('baseUrl: ', req.baseUrl);
-  console.log('remoteAddress: ', req.connection.remoteAddress);
-  console.log('hostname: ', req.hostname);
-  console.log('ip: ', req.ip);
-  console.log('originalUrl: ', req.originalUrl);
-  console.log('params: ', req.params);
-  console.log('path: ', req.path);
-  console.log('protocol: ', req.protocol);
-  console.log('secure: ', req.secure);
-  next();
-});
+// app.use((req, res, next) =>
+// {
+//   console.log('request was made:');
+//   console.log('baseUrl: ', req.baseUrl);
+//   console.log('remoteAddress: ', req.connection.remoteAddress);
+//   console.log('hostname: ', req.hostname);
+//   console.log('ip: ', req.ip);
+//   console.log('originalUrl: ', req.originalUrl);
+//   console.log('params: ', req.params);
+//   console.log('path: ', req.path);
+//   console.log('protocol: ', req.protocol);
+//   console.log('secure: ', req.secure);
+//   next();
+// });
 
 app.use(express.json());
 

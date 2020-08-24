@@ -1,11 +1,9 @@
 const DB = require('./db_DB');
-const { Readable } = require('stream');
-const { time } = require('console');
-const { json } = require('express');
+//const { Readable } = require('stream');
 
-const inStream = new Readable({
-  read() {}
-});
+// const inStream = new Readable({
+//   read() {}
+// });
 
 async function save(title, body, author, writingTimeUTC, isPublic)
 {
@@ -43,7 +41,7 @@ async function save(title, body, author, writingTimeUTC, isPublic)
   }
 }
 
-async function read(res, skipNumber, limitNumber, time)
+async function read(res, limitNumber, time)
 {
   try
   {
@@ -55,7 +53,7 @@ async function read(res, skipNumber, limitNumber, time)
     // articlesCurser
     // .stream().map((e)=>JSON.stringify(e)).pipe(res);  
     const list = await articlesCurser.toArray();
-    console.log(list);
+    //console.log(list);
     const listJson = JSON.stringify(list);
     //console.log(listJson);
     res.send(listJson); 
